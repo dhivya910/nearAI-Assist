@@ -52,7 +52,7 @@ export default function ContentApp() {
   const [chatActive, setChatActive] = useState(false);
   const [currentData, setCurrentData] = useState<any>({});
 
-  async function initSmith() {
+  async function initnearYou() {
     // Get URL of the current tab
     const url = window.location.href;
     const currentItem = await parseUrlToJson(url);
@@ -103,7 +103,7 @@ export default function ContentApp() {
               </p>
               {!chatActive ? (
                 <button
-                  onClick={initSmith}
+                  onClick={initnearYou}
                   className="bg-zinc-100 py-1 px-2 rounded-lg text-zinc-800 text-md hover:bg-zinc-200 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mt-2 font-bold"
                 >
                   Call Smith for this tx/address

@@ -73,7 +73,7 @@ function ContentApp() {
   const [isdialogOpen, setIsDialogOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [chatActive, setChatActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [currentData, setCurrentData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
-  async function initSmith() {
+  async function initnearYou() {
     // Get URL of the current tab
     const url = window.location.href;
     const currentItem = await parseUrlToJson(url);
@@ -187,7 +187,7 @@ function ContentApp() {
       columnNumber: 15
     }
   }, "Smith is a conversational AI assistant that helps you with your crypto explorations. You can ask Smith about the tx / address."), !chatActive ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: initSmith,
+    onClick: initnearYou,
     className: "bg-zinc-100 py-1 px-2 rounded-lg text-zinc-800 text-md hover:bg-zinc-200 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mt-2 font-bold",
     __self: this,
     __source: {
@@ -36421,14 +36421,14 @@ var WebSocketClient = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true":
+/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true":
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true ***!
+  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true ***!
   \***************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-var __resourceQuery = "?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true";
+var __resourceQuery = "?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! webpack/hot/log.js */ "./node_modules/webpack/hot/log.js");
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -50506,7 +50506,7 @@ const isThenable = (thing) =>
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("113f451931ae1c514fc5")
+/******/ 		__webpack_require__.h = () => ("65841e329a39d962d7f7")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -51788,7 +51788,7 @@ const isThenable = (thing) =>
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	__webpack_require__("./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js");
-/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true");
+/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true");
 /******/ 	__webpack_require__("./node_modules/webpack/hot/only-dev-server.js");
 /******/ 	__webpack_require__("./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry.js");
 /******/ 	var __webpack_exports__ = __webpack_require__("./content/content.tsx");
