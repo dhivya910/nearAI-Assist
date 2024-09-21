@@ -54,7 +54,7 @@ export default function ContentApp() {
   async function initSmith() {
     const url = window.location.href;
     const currentItem = await parseUrlToJson(url);
-    alert("NearYou is ready to help you!");
+    // alert("NearYou is ready to help you!");
 
     setCurrentData(currentItem);
     setChatActive(true);
