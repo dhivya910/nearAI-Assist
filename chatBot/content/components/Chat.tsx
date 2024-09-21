@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
   const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
+  const [messages, setMessages] = useState<
+    Array<{ role: string; content: string }>
+  >([]);
   const [input, setInput] = useState("");
-  const [isChatVisible, setIsChatVisible] = useState(true); 
+  const [isChatVisible, setIsChatVisible] = useState(true);
   const [txData, setTxData] = useState<any>(null);
   const [txHash, setTxHash] = useState(initialTxHash);
 
   useEffect(() => {
     const extractTxHash = () => {
       const url = window.location.href;
-      const parts = url.split('/'); 
-      const hashPart = parts[parts.length - 1]; 
+      const parts = url.split("/");
+      const hashPart = parts[parts.length - 1];
       setTxHash(hashPart);
     };
 
@@ -30,8 +32,10 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
         setTxData(response.data);
 
         const initialMessage = `Here's the transaction data: ${JSON.stringify(
-          response.data
-        )}. How can I help you understand this transaction?`;
+          response.data,
+          null,
+          2
+        )}`; // Added indentation for better readability.
         setMessages([{ role: "assistant", content: initialMessage }]);
       } catch (error) {
         console.error("Error fetching transaction data:", error);
@@ -68,7 +72,9 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
             {
               role: "system",
               content: `You are a helpful assistant. Here's the context: ${JSON.stringify(
-                txData
+                txData,
+                null,
+                2
               )}`,
             },
             ...messages,
@@ -129,11 +135,15 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
+            className={`mb-4 ${
+              message.role === "user" ? "text-right" : "text-left"
+            }`}
           >
             <span
-              className={`inline-block p-3 rounded-lg max-w-xs ${
-                message.role === "user" ? "bg-teal-900 text-white" : "bg-gray-800 text-gray-300"
+              className={`inline-block p-3 rounded-lg max-w-xs break-words ${
+                message.role === "user"
+                  ? "bg-teal-900 text-white"
+                  : "bg-gray-800 text-gray-300"
               }`}
             >
               {message.content}
