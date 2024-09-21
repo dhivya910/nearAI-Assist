@@ -14,29 +14,33 @@ app.use(
 
 app.use(express.json());
 
-// Function to fetch NEAR transactions from the NEARBlocks API
-async function fetchNearTransactions(limit: number = 10): Promise<any> {
+// Function to fetch NEAR transaction by its transaction_hash from the NEARBlocks API
+async function fetchTransactionById(txHash: string): Promise<any> {
   try {
-    const response = await axios.get(`https://api.nearblocks.io/v1/txns?limit=${limit}`);
+    // Fetch transaction by transaction_hash (append it to the URL)
+    const response = await axios.get(`https://api.nearblocks.io/v1/txns/${txHash}`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching NEAR transactions", error);
+    console.error("Error fetching NEAR transaction by ID", error);
     return undefined;
   }
 }
 
-app.post("/prompt", async (req, res) => {
-  const { prompt } = req.body;
+// Route to fetch transaction by transaction_hash
+app.post("/transaction", async (req, res) => {
+  const { txHash } = req.body;
 
-  // Fetch transactions based on your prompt (e.g., passing a transaction limit from prompt)
-  const limit = parseInt(prompt) || 10; // Fallback to a default value if the prompt is not valid
-  const transactions = await fetchNearTransactions(limit);
-
-  if (!transactions) {
-    return res.status(500).send("Error fetching transactions");
+  if (!txHash) {
+    return res.status(400).send("Transaction hash is required");
   }
 
-  res.send(transactions);
+  const transaction = await fetchTransactionById(txHash);
+
+  if (!transaction) {
+    return res.status(500).send("Error fetching transaction");
+  }
+
+  res.send(transaction);
 });
 
 app.listen(PORT, () => {
