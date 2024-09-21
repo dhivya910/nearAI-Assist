@@ -5,6 +5,7 @@ import { Providers } from "./Providers";
 import Chat from "./components/Chat";
 import processAccount from "./utils/processAccount";
 import processTx from "./utils/processTx";
+import WorldCoinConnect from "./components/WorldCoin";
 
 async function parseUrlToJson(
   url: string
@@ -77,45 +78,48 @@ export default function ContentApp() {
     <Providers>
       <div className="fixed bottom-0 right-0 mb-4 mr-4 max-w-sm w-full">
         <Layout>
-          {!chatActive ? (
-            <div className="relative isolate overflow-hidden border border-white bg-teal-900 px-4 py-4 shadow-2xl rounded-xl">
-              <div className="mx-auto max-w-md text-center">
-                <div className="flex items-center justify-start space-x-4 my-4 mx-auto">
-                  <img
-                    alt="logo"
-                    src="https://nearblocks.io/images/nearblocksblack.svg"
-                    className="relative inline-block w-30 h-30 rounded-xl"
-                  />
-                </div>
-                <h2 className="text-xl font-bold tracking-tight text-white my-4">
-                  Chat with NearYou, your AI assistant
-                </h2>
-                {/* <p className="mt-2 text-sm leading-6 text-gray-300">
+          <div
+            className="relative isolate overflow-hidden border border-white bg-teal-900 px-4 py-4 shadow-2xl rounded-xl"
+            // style={{ marginBottom: "-90px" }}
+          >
+            <div className="mx-auto max-w-md text-center">
+              <div className="flex items-center justify-start space-x-4 my-4 mx-auto">
+                <img
+                  alt="logo"
+                  src="https://nearblocks.io/images/nearblocksblack.svg"
+                  className="relative inline-block w-30 h-30 rounded-xl"
+                />
+              </div>
+              <h2 className="text-xl font-bold tracking-tight text-white my-4">
+                Chat with NearYou, your AI assistant
+              </h2>
+              <WorldCoinConnect />
+              {/* <p className="mt-2 text-sm leading-6 text-gray-300">
                 NearYou is a conversational AI assistant that helps you with
                 your crypto explorations. You can ask NearYou about the tx /
                 address.
               </p> */}
-
+              {!chatActive ? (
                 <button
                   onClick={initSmith}
                   className="bg-zinc-100 py-1 px-2 rounded-lg text-zinc-800 text-sm hover:bg-zinc-200 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mt-2 font-bold"
                 >
                   Call NearYou for this tx/address
                 </button>
+              ) : (
+                <Chat data={currentData} />
+              )}
 
-                <div>
-                  <button
-                    onClick={() => setIsDialogOpen(false)}
-                    className="mt-4 underline hover:no-underline text-sm"
-                  >
-                    Click to send NearYou away.
-                  </button>
-                </div>
+              <div>
+                <button
+                  onClick={() => setIsDialogOpen(false)}
+                  className="mt-4 underline hover:no-underline text-sm"
+                >
+                  Click to send NearYou away.
+                </button>
               </div>
             </div>
-          ) : (
-            <Chat data={currentData} />
-          )}
+          </div>
         </Layout>
       </div>
     </Providers>
