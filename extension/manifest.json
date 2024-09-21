@@ -1,14 +1,15 @@
 {
   "manifest_version": 3,
   "version": "1.0",
-  "name": "smith",
+  "name": "nearYou",
   "description": "An extension template using React and TypeScript. This template includes a content script using Tailwind.css. To see it in action, visit https://extension.js.org.",
   "background": {
     "service_worker": "./background.ts"
   },
   "content_scripts": [
     {
-      "matches": ["https://nearblocks.io/*"],
+      "matches": ["https://nearblocks.io/txns/*",
+      "https://nearblocks.io/address/*"],
       "js": ["./content/content.tsx"]
     }
   ],

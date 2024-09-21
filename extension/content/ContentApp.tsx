@@ -51,7 +51,7 @@ export default function ContentApp() {
   const [chatActive, setChatActive] = useState(false);
   const [currentData, setCurrentData] = useState<any>({});
 
-  async function initSmith() {
+  async function initnearYou() {
     const url = window.location.href;
     const currentItem = await parseUrlToJson(url);
     // alert("NearYou is ready to help you!");
@@ -97,7 +97,7 @@ export default function ContentApp() {
               </p> */}
 
                 <button
-                  onClick={initSmith}
+                  onClick={initnearYou}
                   className="bg-zinc-100 py-1 px-2 rounded-lg text-zinc-800 text-sm hover:bg-zinc-200 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mt-2 font-bold"
                 >
                   Call NearYou for this tx/address
