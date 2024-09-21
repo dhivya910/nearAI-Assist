@@ -1,0 +1,9 @@
+scripts/node_modules
+scripts/.env
+nearYou/node_modules
+node_modules
+nearYou/.env
+
+/scripts
+/nearYou
+/node_modules
