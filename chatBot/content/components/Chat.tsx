@@ -1,27 +1,34 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import("../base.css");
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const ChatComponent = ({ data: txHash }: { data: string }) => {
+const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
   const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState<
-    Array<{ role: string; content: string }>
-  >([]);
+  const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
   const [input, setInput] = useState("");
-  const [isChatVisible, setIsChatVisible] = useState(true); // New state for visibility
+  const [isChatVisible, setIsChatVisible] = useState(true); 
   const [txData, setTxData] = useState<any>(null);
+  const [txHash, setTxHash] = useState(initialTxHash);
+
+  useEffect(() => {
+    const extractTxHash = () => {
+      const url = window.location.href;
+      const parts = url.split('/'); 
+      const hashPart = parts[parts.length - 1]; 
+      setTxHash(hashPart);
+    };
+
+    extractTxHash();
+  }, []);
 
   useEffect(() => {
     async function fetchTxData() {
       setLoading(true);
       try {
-        // Fetch transaction data based on txHash
         const response = await axios.get(
-          `https://api.nearblocks.io/v1/txn/${txHash}`
+          `https://api.nearblocks.io/v1/txns/${txHash}`
         );
         setTxData(response.data);
 
-        // Initialize chat with context
         const initialMessage = `Here's the transaction data: ${JSON.stringify(
           response.data
         )}. How can I help you understand this transaction?`;
@@ -38,7 +45,10 @@ const ChatComponent = ({ data: txHash }: { data: string }) => {
       }
       setLoading(false);
     }
-    fetchTxData();
+
+    if (txHash) {
+      fetchTxData();
+    }
   }, [txHash]);
 
   const sendMessage = async () => {
@@ -103,7 +113,7 @@ const ChatComponent = ({ data: txHash }: { data: string }) => {
         </div>
         <div>
           <button
-            onClick={() => setIsChatVisible(false)} // Close chat on click
+            onClick={() => setIsChatVisible(false)}
             className="text-white text-xl"
           >
             ✕
@@ -119,15 +129,11 @@ const ChatComponent = ({ data: txHash }: { data: string }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`mb-4 ${
-              message.role === "user" ? "text-right" : "text-left"
-            }`}
+            className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
           >
             <span
               className={`inline-block p-3 rounded-lg max-w-xs ${
-                message.role === "user"
-                  ? "bg-teal-900 text-white"
-                  : "bg-gray-800 text-gray-300"
+                message.role === "user" ? "bg-teal-900 text-white" : "bg-gray-800 text-gray-300"
               }`}
             >
               {message.content}
