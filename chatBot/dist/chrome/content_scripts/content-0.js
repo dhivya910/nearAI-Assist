@@ -23,7 +23,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/nearYou/content/ContentApp.tsx",
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/ContentApp.tsx",
   _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -319,8 +319,174 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/nearYou/content/components/Chat.tsx",
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/components/Chat.tsx",
   _s = __webpack_require__.$Refresh$.signature();
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import("../base.css");
+
+// const ChatComponent = ({ data: txHash }: { data: string }) => {
+//   const [loading, setLoading] = useState(false);
+//   const [messages, setMessages] = useState<
+//     Array<{ role: string; content: string }>
+//   >([]);
+//   const [input, setInput] = useState("");
+//   const [isChatVisible, setIsChatVisible] = useState(true); // New state for visibility
+//   const [txData, setTxData] = useState<any>(null);
+
+//   useEffect(() => {
+//     async function fetchTxData() {
+//       setLoading(true);
+//       try {
+//         const response = await axios.get(`https://your-api.com/tx/${txHash}`);
+//         setTxData(response.data);
+
+//         const initialMessage = `Here's the transaction data: ${JSON.stringify(
+//           response.data
+//         )}. How can I help you understand this transaction?`;
+//         setMessages([{ role: "assistant", content: initialMessage }]);
+//       } catch (error) {
+//         console.error("Error fetching transaction data:", error);
+//         setMessages([
+//           {
+//             role: "assistant",
+//             content:
+//               "Sorry, I couldn't fetch the transaction data. How can I assist you?",
+//           },
+//         ]);
+//       }
+//       setLoading(false);
+//     }
+//     fetchTxData();
+//   }, [txHash]);
+
+//   const sendMessage = async () => {
+//     if (!input.trim()) return;
+
+//     const userMessage = { role: "user", content: input };
+//     setMessages((prevMessages) => [...prevMessages, userMessage]);
+//     setInput("");
+//     setLoading(true);
+
+//     try {
+//       const response = await axios.post(
+//         "https://api.openai.com/v1/chat/completions",
+//         {
+//           model: "gpt-4",
+//           messages: [
+//             {
+//               role: "system",
+//               content: `You are a helpful assistant. Here's the context: ${JSON.stringify(
+//                 txData
+//               )}`,
+//             },
+//             ...messages,
+//             userMessage,
+//           ],
+//         },
+//         {
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${process.env.OPEN_AI_API_KEY}`,
+//           },
+//         }
+//       );
+
+//       const assistantMessage = response.data.choices[0].message;
+//       setMessages((prevMessages) => [...prevMessages, assistantMessage]);
+//     } catch (error) {
+//       console.error("Error sending message to OpenAI:", error);
+//       setMessages((prevMessages) => [
+//         ...prevMessages,
+//         {
+//           role: "assistant",
+//           content: "Sorry, I encountered an error. Please try again.",
+//         },
+//       ]);
+//     }
+//     setLoading(false);
+//   };
+
+//   if (!isChatVisible) return null;
+
+//   return (
+//     <div className="max-w-sm mx-auto mt-10 flex flex-col h-[600px] shadow-lg rounded-lg bg-black text-white">
+//       {/* Header */}
+//       <div className="bg-teal-900 text-white p-4 rounded-t-lg flex items-center justify-between border border-white">
+//         <div className="flex items-center">
+//           <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-2"></div>
+//           <div>
+//             <h4 className="text-lg font-bold">Chat with NearYou</h4>
+//             <p className="text-sm">We are online!</p>
+//           </div>
+//         </div>
+//         <div>
+//           <button
+//             onClick={() => setIsChatVisible(false)} // Close chat on click
+//             className="text-white text-xl"
+//           >
+//             ✕
+//           </button>
+//         </div>
+//         <div>
+//           <button className="text-white text-xl">⋮</button>
+//         </div>
+//       </div>
+
+//       {/* Message Container */}
+//       <div className="flex-1 overflow-y-auto p-4 bg-gray-900 border border-white h-[400px]">
+//         {messages.map((message, index) => (
+//           <div
+//             key={index}
+//             className={`mb-4 ${
+//               message.role === "user" ? "text-right" : "text-left"
+//             }`}
+//           >
+//             <span
+//               className={`inline-block p-3 rounded-lg max-w-xs ${
+//                 message.role === "user"
+//                   ? "bg-teal-900 text-white"
+//                   : "bg-gray-800 text-gray-300"
+//               }`}
+//             >
+//               {message.content}
+//             </span>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Input Field */}
+//       <div className="bg-teal-900 border border-white p-4 rounded-b-lg">
+//         <div className="flex items-center">
+//           <input
+//             type="text"
+//             value={input}
+//             onChange={(e) => setInput(e.target.value)}
+//             onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+//             className="flex-1 px-4 py-2 text-white rounded-lg bg-gray-800 border border-transparent focus:border-blue-400 focus:bg-black"
+//             placeholder="Ask a question..."
+//             disabled={loading}
+//           />
+//           <button
+//             onClick={sendMessage}
+//             className="ml-2 px-4 py-2 border border-white bg-teal-900 text-white rounded-lg disabled:opacity-50"
+//             disabled={loading}
+//           >
+//             Send
+//           </button>
+//         </div>
+//       </div>
+
+//       {loading && (
+//         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+//           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-teal-900"></div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ChatComponent;
 
 
 __webpack_require__.e(/*! import() */ "content_base_css").then(__webpack_require__.bind(__webpack_require__, /*! ../base.css */ "./content/base.css"));
@@ -337,8 +503,11 @@ const ChatComponent = ({
     async function fetchTxData() {
       setLoading(true);
       try {
-        const response = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(`https://your-api.com/tx/${txHash}`);
+        // Fetch transaction data based on txHash
+        const response = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(`https://api.nearblocks.io/v1/txn/${txHash}`);
         setTxData(response.data);
+
+        // Initialize chat with context
         const initialMessage = `Here's the transaction data: ${JSON.stringify(response.data)}. How can I help you understand this transaction?`;
         setMessages([{
           role: "assistant",
@@ -374,7 +543,7 @@ const ChatComponent = ({
       }, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OPEN_AI_API_KEY}`
+          Authorization: `Bearer ${"MISSING_ENV_VAR".OPEN_AI_API_KEY}`
         }
       });
       const assistantMessage = response.data.choices[0].message;
@@ -394,7 +563,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73,
+      lineNumber: 242,
       columnNumber: 10
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -402,7 +571,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75,
+      lineNumber: 244,
       columnNumber: 7
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -410,7 +579,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76,
+      lineNumber: 245,
       columnNumber: 9
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -418,14 +587,14 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77,
+      lineNumber: 246,
       columnNumber: 11
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78,
+      lineNumber: 247,
       columnNumber: 11
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
@@ -433,7 +602,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79,
+      lineNumber: 248,
       columnNumber: 13
     }
   }, "Chat with NearYou"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -441,14 +610,14 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80,
+      lineNumber: 249,
       columnNumber: 13
     }
   }, "We are online!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83,
+      lineNumber: 252,
       columnNumber: 9
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -458,14 +627,14 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 84,
+      lineNumber: 253,
       columnNumber: 11
     }
   }, "\u2715")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89,
+      lineNumber: 258,
       columnNumber: 9
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -473,7 +642,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 90,
+      lineNumber: 259,
       columnNumber: 11
     }
   }, "\u22EE"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -481,7 +650,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95,
+      lineNumber: 264,
       columnNumber: 7
     }
   }, messages.map((message, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -490,7 +659,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 96,
+      lineNumber: 265,
       columnNumber: 43
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -498,7 +667,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97,
+      lineNumber: 266,
       columnNumber: 13
     }
   }, message.content)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -506,7 +675,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 104,
+      lineNumber: 273,
       columnNumber: 7
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -514,7 +683,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 105,
+      lineNumber: 274,
       columnNumber: 9
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
@@ -528,7 +697,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 106,
+      lineNumber: 275,
       columnNumber: 11
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -538,7 +707,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 107,
+      lineNumber: 276,
       columnNumber: 11
     }
   }, "Send"))), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -546,7 +715,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 113,
+      lineNumber: 282,
       columnNumber: 19
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -554,7 +723,7 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 114,
+      lineNumber: 283,
       columnNumber: 11
     }
   })));
@@ -615,7 +784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/nearYou/content/components/Layout.tsx";
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/components/Layout.tsx";
 
 function Layout({
   children
@@ -683,7 +852,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/nearYou/content/content.tsx";
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/content.tsx";
 
 
 
@@ -763,19 +932,19 @@ async function processAccount(address) {
   const balance = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(`https://api.zondax.ch/fil/data/v3/mainnet/account/balance/${address}`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.BERYX_TOKEN}`
+      Authorization: `Bearer ${"MISSING_ENV_VAR".BERYX_TOKEN}`
     }
   });
   const info = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(`https://api.zondax.ch/fil/data/v3/mainnet/account/info/${address}`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.BERYX_TOKEN}`
+      Authorization: `Bearer ${"MISSING_ENV_VAR".BERYX_TOKEN}`
     }
   });
   const transactions = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(`https://api.zondax.ch/fil/data/v3/mainnet/transactions/address/${address}/receiver?limit=100&remove_internal_txs=1`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.BERYX_TOKEN}`
+      Authorization: `Bearer ${"MISSING_ENV_VAR".BERYX_TOKEN}`
     }
   });
   console.log("address: ", address);
@@ -841,7 +1010,7 @@ async function processAccount(txHash) {
   const tx = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(`https://api.zondax.ch/fil/data/v3/mainnet/transactions/hash/${txHash}?limit=100&remove_internal_txs=1&remove_fee_txs=1&sort_by=height%3Aasc%2Camount%3Adesc`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.BERYX_TOKEN}`
+      Authorization: `Bearer ${"MISSING_ENV_VAR".BERYX_TOKEN}`
     }
   });
   return {
@@ -50533,7 +50702,7 @@ const isThenable = (thing) =>
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("54e4b078e382180c6481")
+/******/ 		__webpack_require__.h = () => ("c7eb72f213149b479e0c")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
