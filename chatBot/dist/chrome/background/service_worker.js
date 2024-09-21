@@ -2251,14 +2251,14 @@ var WebSocketClient = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true":
+/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true":
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true ***!
+  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true ***!
   \***************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-var __resourceQuery = "?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true";
+var __resourceQuery = "?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! webpack/hot/log.js */ "./node_modules/webpack/hot/log.js");
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -11605,7 +11605,7 @@ module.exports = path.URL;
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("6b492194f96eba4a9f3f")
+/******/ 		__webpack_require__.h = () => ("c7eb72f213149b479e0c")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -12625,7 +12625,7 @@ module.exports = path.URL;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	__webpack_require__("./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js");
-/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8082&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true");
+/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true");
 /******/ 	__webpack_require__("./node_modules/webpack/hot/only-dev-server.js");
 /******/ 	__webpack_require__("./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry.js");
 /******/ 	var __webpack_exports__ = __webpack_require__("./background.ts");
