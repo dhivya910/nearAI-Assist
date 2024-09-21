@@ -14,21 +14,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _public_logo_webp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../public/logo.webp */ "./public/logo.webp");
-/* harmony import */ var _public_chromeWindow_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../public/chromeWindow.png */ "./public/chromeWindow.png");
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Layout */ "./content/components/Layout.tsx");
-/* harmony import */ var _Providers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Providers */ "./content/Providers.tsx");
-/* harmony import */ var _components_Chat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Chat */ "./content/components/Chat.tsx");
-/* harmony import */ var _utils_processAccount__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/processAccount */ "./content/utils/processAccount.ts");
-/* harmony import */ var _utils_processTx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils/processTx */ "./content/utils/processTx.ts");
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Layout */ "./content/components/Layout.tsx");
+/* harmony import */ var _Providers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Providers */ "./content/Providers.tsx");
+/* harmony import */ var _components_Chat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Chat */ "./content/components/Chat.tsx");
+/* harmony import */ var _utils_processAccount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/processAccount */ "./content/utils/processAccount.ts");
+/* harmony import */ var _utils_processTx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/processTx */ "./content/utils/processTx.ts");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\EthSingapore\\nearAI Assist\\nearYou\\content\\ContentApp.tsx",
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/ContentApp.tsx",
   _s = __webpack_require__.$Refresh$.signature();
-
-
 
 
 
@@ -37,19 +33,19 @@ var _jsxFileName = "C:\\EthSingapore\\nearAI Assist\\nearYou\\content\\ContentAp
 
 async function parseUrlToJson(url) {
   try {
-    const regex = /https:\/\/nearblocks.io\/txns\/(address|txs)\/([^?]+)/;
+    const regex = /https:\/\/beryx.io\/search\/fil\/mainnet\/(address|txs)\/([^?]+)/;
     const match = url.match(regex);
     if (match && match.length >= 3) {
       const type = match[1];
       const value = match[2];
       if (type === "txs") {
-        const data = await (0,_utils_processTx__WEBPACK_IMPORTED_MODULE_7__["default"])(value);
+        const data = await (0,_utils_processTx__WEBPACK_IMPORTED_MODULE_5__["default"])(value);
         return {
           type: "tx",
           value: data
         };
       } else {
-        const data = await (0,_utils_processAccount__WEBPACK_IMPORTED_MODULE_6__["default"])(value);
+        const data = await (0,_utils_processAccount__WEBPACK_IMPORTED_MODULE_4__["default"])(value);
         return {
           type: "address",
           value: data
@@ -73,16 +69,10 @@ function ContentApp() {
   const [isdialogOpen, setIsDialogOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [chatActive, setChatActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [currentData, setCurrentData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
-  async function initnearYou() {
-    // Get URL of the current tab
+  async function initSmith() {
     const url = window.location.href;
     const currentItem = await parseUrlToJson(url);
-    alert("Smith is ready to help you!"
-    //  +
-    //   currentItem.type +
-    //   " " +
-    //   JSON.stringify(currentItem.value)
-    );
+    alert("NearYou is ready to help you!");
     setCurrentData(currentItem);
     setChatActive(true);
   }
@@ -92,7 +82,7 @@ function ContentApp() {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 63,
+        lineNumber: 56,
         columnNumber: 12
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -101,145 +91,117 @@ function ContentApp() {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64,
+        lineNumber: 57,
         columnNumber: 9
       }
-    }, "Call Smith ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    }, "Call NearYou ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
       "aria-hidden": "true",
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65,
-        columnNumber: 22
+        lineNumber: 58,
+        columnNumber: 24
       }
     }, "+")));
   }
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Providers__WEBPACK_IMPORTED_MODULE_4__.Providers, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Providers__WEBPACK_IMPORTED_MODULE_2__.Providers, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69,
+      lineNumber: 62,
       columnNumber: 10
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mx-auto max-w-7xl md:px-0 lg:p-6",
+    className: "fixed bottom-0 right-0 mb-4 mr-4 max-w-sm w-full",
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70,
+      lineNumber: 63,
       columnNumber: 7
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71,
+      lineNumber: 64,
       columnNumber: 9
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0",
+  }, !chatActive ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "relative isolate overflow-hidden border border-white bg-teal-900 px-4 py-4 shadow-2xl rounded-xl",
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72,
-      columnNumber: 11
+      lineNumber: 65,
+      columnNumber: 26
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mx-auto max-w-md text-center lg:py-12 lg:mx-0 lg:flex-auto lg:text-left",
+    className: "mx-auto max-w-md text-center",
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73,
-      columnNumber: 13
+      lineNumber: 66,
+      columnNumber: 15
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "flex items-center justify-start space-x-4 my-4 mx-auto",
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74,
-      columnNumber: 15
+      lineNumber: 67,
+      columnNumber: 17
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     alt: "logo",
-    src: _public_logo_webp__WEBPACK_IMPORTED_MODULE_1__,
-    className: "relative inline-block w-20 rounded-xl",
+    src: "https://nearblocks.io/images/nearblocksblack.svg",
+    className: "relative inline-block w-30 h-30 rounded-xl",
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75,
-      columnNumber: 17
+      lineNumber: 68,
+      columnNumber: 19
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-    className: "text-3xl font-bold tracking-tight text-white sm:text-4xl",
+    className: "text-xl font-bold tracking-tight text-white my-4",
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77,
-      columnNumber: 15
+      lineNumber: 70,
+      columnNumber: 17
     }
-  }, "Chat with Smith, the crypto AI assistant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: "mt-6 text-lg leading-8 text-gray-300",
+  }, "Chat with NearYou, your AI assistant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: initSmith,
+    className: "bg-zinc-100 py-1 px-2 rounded-lg text-zinc-800 text-sm hover:bg-zinc-200 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mt-2 font-bold",
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80,
-      columnNumber: 15
+      lineNumber: 79,
+      columnNumber: 17
     }
-  }, "Smith is a conversational AI assistant that helps you with your crypto explorations. You can ask Smith about the tx / address."), !chatActive ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: initnearYou,
-    className: "bg-zinc-100 py-1 px-2 rounded-lg text-zinc-800 text-md hover:bg-zinc-200 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white mt-2 font-bold",
+  }, "Call NearYou for this tx/address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: () => setIsDialogOpen(false),
+    className: "mt-4 underline hover:no-underline text-sm",
     __self: this,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 84,
-      columnNumber: 30
+      columnNumber: 19
     }
-  }, "Call Smith for this tx/address") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Chat__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "Click to send NearYou away.")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Chat__WEBPACK_IMPORTED_MODULE_3__["default"], {
     data: currentData,
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86,
-      columnNumber: 29
+      lineNumber: 89,
+      columnNumber: 22
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 87,
-      columnNumber: 15
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: () => setIsDialogOpen(false),
-    className: "mt-4 underline hover:no-underline",
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 88,
-      columnNumber: 17
-    }
-  }, "Click to send smith away."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "relative mt-16 h-80 lg:mt-8",
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 93,
-      columnNumber: 13
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    className: "absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10",
-    src: _public_chromeWindow_png__WEBPACK_IMPORTED_MODULE_2__,
-    alt: "Chrome window screenshot",
-    width: "1824",
-    height: "1080",
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 94,
-      columnNumber: 15
-    }
-  }))))));
+  }))));
 }
 _s(ContentApp, "onc8mjPuh5Zvz+w5EDQPOe2E3wk=");
 _c = ContentApp;
@@ -357,10 +319,177 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\EthSingapore\\nearAI Assist\\nearYou\\content\\components\\Chat.tsx",
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/components/Chat.tsx",
   _s = __webpack_require__.$Refresh$.signature();
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import("../base.css");
+
+// const ChatComponent = ({ data: txHash }: { data: string }) => {
+//   const [loading, setLoading] = useState(false);
+//   const [messages, setMessages] = useState<
+//     Array<{ role: string; content: string }>
+//   >([]);
+//   const [input, setInput] = useState("");
+//   const [isChatVisible, setIsChatVisible] = useState(true); // New state for visibility
+//   const [txData, setTxData] = useState<any>(null);
+
+//   useEffect(() => {
+//     async function fetchTxData() {
+//       setLoading(true);
+//       try {
+//         const response = await axios.get(`https://your-api.com/tx/${txHash}`);
+//         setTxData(response.data);
+
+//         const initialMessage = `Here's the transaction data: ${JSON.stringify(
+//           response.data
+//         )}. How can I help you understand this transaction?`;
+//         setMessages([{ role: "assistant", content: initialMessage }]);
+//       } catch (error) {
+//         console.error("Error fetching transaction data:", error);
+//         setMessages([
+//           {
+//             role: "assistant",
+//             content:
+//               "Sorry, I couldn't fetch the transaction data. How can I assist you?",
+//           },
+//         ]);
+//       }
+//       setLoading(false);
+//     }
+//     fetchTxData();
+//   }, [txHash]);
+
+//   const sendMessage = async () => {
+//     if (!input.trim()) return;
+
+//     const userMessage = { role: "user", content: input };
+//     setMessages((prevMessages) => [...prevMessages, userMessage]);
+//     setInput("");
+//     setLoading(true);
+
+//     try {
+//       const response = await axios.post(
+//         "https://api.openai.com/v1/chat/completions",
+//         {
+//           model: "gpt-4",
+//           messages: [
+//             {
+//               role: "system",
+//               content: `You are a helpful assistant. Here's the context: ${JSON.stringify(
+//                 txData
+//               )}`,
+//             },
+//             ...messages,
+//             userMessage,
+//           ],
+//         },
+//         {
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${process.env.OPEN_AI_API_KEY}`,
+//           },
+//         }
+//       );
+
+//       const assistantMessage = response.data.choices[0].message;
+//       setMessages((prevMessages) => [...prevMessages, assistantMessage]);
+//     } catch (error) {
+//       console.error("Error sending message to OpenAI:", error);
+//       setMessages((prevMessages) => [
+//         ...prevMessages,
+//         {
+//           role: "assistant",
+//           content: "Sorry, I encountered an error. Please try again.",
+//         },
+//       ]);
+//     }
+//     setLoading(false);
+//   };
+
+//   if (!isChatVisible) return null;
+
+//   return (
+//     <div className="max-w-sm mx-auto mt-10 flex flex-col h-[600px] shadow-lg rounded-lg bg-black text-white">
+//       {/* Header */}
+//       <div className="bg-teal-900 text-white p-4 rounded-t-lg flex items-center justify-between border border-white">
+//         <div className="flex items-center">
+//           <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-2"></div>
+//           <div>
+//             <h4 className="text-lg font-bold">Chat with NearYou</h4>
+//             <p className="text-sm">We are online!</p>
+//           </div>
+//         </div>
+//         <div>
+//           <button
+//             onClick={() => setIsChatVisible(false)} // Close chat on click
+//             className="text-white text-xl"
+//           >
+//             ✕
+//           </button>
+//         </div>
+//         <div>
+//           <button className="text-white text-xl">⋮</button>
+//         </div>
+//       </div>
+
+//       {/* Message Container */}
+//       <div className="flex-1 overflow-y-auto p-4 bg-gray-900 border border-white h-[400px]">
+//         {messages.map((message, index) => (
+//           <div
+//             key={index}
+//             className={`mb-4 ${
+//               message.role === "user" ? "text-right" : "text-left"
+//             }`}
+//           >
+//             <span
+//               className={`inline-block p-3 rounded-lg max-w-xs ${
+//                 message.role === "user"
+//                   ? "bg-teal-900 text-white"
+//                   : "bg-gray-800 text-gray-300"
+//               }`}
+//             >
+//               {message.content}
+//             </span>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Input Field */}
+//       <div className="bg-teal-900 border border-white p-4 rounded-b-lg">
+//         <div className="flex items-center">
+//           <input
+//             type="text"
+//             value={input}
+//             onChange={(e) => setInput(e.target.value)}
+//             onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+//             className="flex-1 px-4 py-2 text-white rounded-lg bg-gray-800 border border-transparent focus:border-blue-400 focus:bg-black"
+//             placeholder="Ask a question..."
+//             disabled={loading}
+//           />
+//           <button
+//             onClick={sendMessage}
+//             className="ml-2 px-4 py-2 border border-white bg-teal-900 text-white rounded-lg disabled:opacity-50"
+//             disabled={loading}
+//           >
+//             Send
+//           </button>
+//         </div>
+//       </div>
+
+//       {loading && (
+//         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+//           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-teal-900"></div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ChatComponent;
 
 
+__webpack_require__.e(/*! import() */ "content_base_css").then(__webpack_require__.bind(__webpack_require__, /*! ../base.css */ "./content/base.css"));
 const ChatComponent = ({
   data: txHash
 }) => {
@@ -368,12 +497,13 @@ const ChatComponent = ({
   const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [messages, setMessages] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [input, setInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [isChatVisible, setIsChatVisible] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true); // New state for visibility
   const [txData, setTxData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function fetchTxData() {
       setLoading(true);
       try {
-        // Replace with your actual API endpoint
+        // Fetch transaction data based on txHash
         const response = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(`https://api.nearblocks.io/v1/txn/${txHash}`);
         setTxData(response.data);
 
@@ -404,7 +534,7 @@ const ChatComponent = ({
     setInput("");
     setLoading(true);
     try {
-      const response = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].post('https://api.openai.com/v1/chat/completions', {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("https://api.openai.com/v1/chat/completions", {
         model: "gpt-4",
         messages: [{
           role: "system",
@@ -412,8 +542,8 @@ const ChatComponent = ({
         }, ...messages, userMessage]
       }, {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${"MISSING_ENV_VAR".OPEN_AI_API_KEY}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${"MISSING_ENV_VAR".OPEN_AI_API_KEY}`
         }
       });
       const assistantMessage = response.data.choices[0].message;
@@ -427,20 +557,100 @@ const ChatComponent = ({
     }
     setLoading(false);
   };
+  if (!isChatVisible) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "max-w-xl mx-auto mt-10 flex flex-col h-[600px]",
+    className: "max-w-sm mx-auto mt-10 flex flex-col h-[600px] shadow-lg rounded-lg bg-black text-white",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73,
+      lineNumber: 242,
       columnNumber: 10
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex-1 overflow-y-auto mb-4 p-4 border border-gray-300 rounded",
+    className: "bg-teal-900 text-white p-4 rounded-t-lg flex items-center justify-between border border-white",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74,
+      lineNumber: 244,
+      columnNumber: 7
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex items-center",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 245,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mr-2",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 246,
+      columnNumber: 11
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 247,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", {
+    className: "text-lg font-bold",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 248,
+      columnNumber: 13
+    }
+  }, "Chat with NearYou"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "text-sm",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 249,
+      columnNumber: 13
+    }
+  }, "We are online!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 252,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: () => setIsChatVisible(false) // Close chat on click
+    ,
+    className: "text-white text-xl",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 253,
+      columnNumber: 11
+    }
+  }, "\u2715")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 258,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "text-white text-xl",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 259,
+      columnNumber: 11
+    }
+  }, "\u22EE"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-1 overflow-y-auto p-4 bg-gray-900 border border-white h-[400px]",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 264,
       columnNumber: 7
     }
   }, messages.map((message, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -449,68 +659,76 @@ const ChatComponent = ({
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75,
+      lineNumber: 265,
       columnNumber: 43
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: `inline-block p-2 rounded ${message.role === "user" ? "bg-blue-500 text-white" : "bg-gray-200"}`,
+    className: `inline-block p-3 rounded-lg max-w-xs ${message.role === "user" ? "bg-teal-900 text-white" : "bg-gray-800 text-gray-300"}`,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76,
+      lineNumber: 266,
       columnNumber: 13
     }
   }, message.content)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex",
+    className: "bg-teal-900 border border-white p-4 rounded-b-lg",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81,
+      lineNumber: 273,
       columnNumber: 7
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex items-center",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 274,
+      columnNumber: 9
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
     value: input,
     onChange: e => setInput(e.target.value),
     onKeyPress: e => e.key === "Enter" && sendMessage(),
-    className: "flex-1 p-2 border border-gray-300 rounded-l",
+    className: "flex-1 px-4 py-2 text-white rounded-lg bg-gray-800 border border-transparent focus:border-blue-400 focus:bg-black",
     placeholder: "Ask a question...",
     disabled: loading,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82,
-      columnNumber: 9
+      lineNumber: 275,
+      columnNumber: 11
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: sendMessage,
-    className: "p-2 bg-blue-500 text-white rounded-r",
+    className: "ml-2 px-4 py-2 border border-white bg-teal-900 text-white rounded-lg disabled:opacity-50",
     disabled: loading,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83,
-      columnNumber: 9
+      lineNumber: 276,
+      columnNumber: 11
     }
-  }, "Send")), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "mt-4 text-center",
+  }, "Send"))), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "absolute bottom-10 left-1/2 transform -translate-x-1/2",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87,
+      lineNumber: 282,
       columnNumber: 19
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mx-auto",
+    className: "animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-teal-900",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88,
+      lineNumber: 283,
       columnNumber: 11
     }
   })));
 };
-_s(ChatComponent, "P2lwa8x1FxFCMfUP8g7qaTFd98M=");
+_s(ChatComponent, "0eq19rQczn7z+z1kC44rGqezLps=");
 _c = ChatComponent;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatComponent);
 var _c;
@@ -566,7 +784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\EthSingapore\\nearAI Assist\\nearYou\\content\\components\\Layout.tsx";
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/components/Layout.tsx";
 
 function Layout({
   children
@@ -634,7 +852,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_error_overlay__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/overlay/index.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\EthSingapore\\nearAI Assist\\nearYou\\content\\content.tsx";
+var _jsxFileName = "/Users/elizabeth/Desktop/nearAI-Assist/chatBot/content/content.tsx";
 
 
 
@@ -36421,14 +36639,14 @@ var WebSocketClient = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true":
+/***/ "./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true":
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true ***!
+  !*** ./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true ***!
   \***************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-var __resourceQuery = "?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true";
+var __resourceQuery = "?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! webpack/hot/log.js */ "./node_modules/webpack/hot/log.js");
 /* harmony import */ var webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(webpack_hot_log_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -38892,28 +39110,6 @@ if (true) {
 	log("info", "[HMR] Waiting for update signal from WDS...");
 } else {}
 
-
-/***/ }),
-
-/***/ "./public/chromeWindow.png":
-/*!*********************************!*\
-  !*** ./public/chromeWindow.png ***!
-  \*********************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "web_accessible_resources/resource-0/chromeWindow.png";
-
-/***/ }),
-
-/***/ "./public/logo.webp":
-/*!**************************!*\
-  !*** ./public/logo.webp ***!
-  \**************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "web_accessible_resources/resource-0/logo.webp";
 
 /***/ }),
 
@@ -50506,7 +50702,7 @@ const isThenable = (thing) =>
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("65841e329a39d962d7f7")
+/******/ 		__webpack_require__.h = () => ("c7eb72f213149b479e0c")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -51200,7 +51396,7 @@ const isThenable = (thing) =>
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
-/******/ 		// no baseURI
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
 /******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
@@ -51788,7 +51984,7 @@ const isThenable = (thing) =>
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	__webpack_require__("./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js");
-/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8086&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true");
+/******/ 	__webpack_require__("./node_modules/webpack-dev-server/client/index.js?protocol=ws%3A&hostname=127.0.0.1&port=8080&pathname=%2Fws&logging=none&progress=false&overlay=%7B%22errors%22%3Afalse%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=only&live-reload=true");
 /******/ 	__webpack_require__("./node_modules/webpack/hot/only-dev-server.js");
 /******/ 	__webpack_require__("./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry.js");
 /******/ 	var __webpack_exports__ = __webpack_require__("./content/content.tsx");
