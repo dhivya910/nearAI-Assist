@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunksmith"] = self["webpackChunksmith"] || []).push([["content_base_css"],{
+(self["webpackChunknearYou"] = self["webpackChunknearYou"] || []).push([["content_base_css"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./content/base.css":
 /*!**************************************************************************************************************************************!*\
@@ -564,9 +564,6 @@ video {
 .pointer-events-none {
   pointer-events: none;
 }
-.visible {
-  visibility: visible;
-}
 .fixed {
   position: fixed;
 }
@@ -765,6 +762,9 @@ video {
 .overflow-y-auto {
   overflow-y: auto;
 }
+.break-words {
+  overflow-wrap: break-word;
+}
 .rounded-full {
   border-radius: 9999px;
 }
@@ -790,9 +790,6 @@ video {
 }
 .border-b-2 {
   border-bottom-width: 2px;
-}
-.border-t {
-  border-top-width: 1px;
 }
 .border-t-2 {
   border-top-width: 2px;

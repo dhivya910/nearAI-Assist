@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import OpenAI from 'openai'
+
+const openai = new OpenAI({
+  apiKey: process.env.EXTENSION_PUBLIC_OPENAI_API_KEY!,
+  dangerouslyAllowBrowser: true
+})
 
 const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
   const [loading, setLoading] = useState(false);
@@ -27,16 +33,15 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://api.nearblocks.io/v1/txns/${txHash}`
-        );
-        setTxData(response.data);
+          `https://api.nearblocks.io/v1/txns/${txHash}`,
 
-        const initialMessage = `Here's the transaction data: ${JSON.stringify(
-          response.data,
-          null,
-          2
-        )}`; // Added indentation for better readability.
-        setMessages([{ role: "assistant", content: initialMessage }]);
+        );
+        setTxData(response?.data);
+
+        setMessages([{
+          role: "assistant",
+          content: `Hello! I have information about a transaction on the NEAR blockchain. What would you like to know about it?`,
+        }]);
       } catch (error) {
         console.error("Error fetching transaction data:", error);
         setMessages([
@@ -64,34 +69,59 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          model: "gpt-4",
-          messages: [
-            {
-              role: "system",
-              content: `You are a helpful assistant. Here's the context: ${JSON.stringify(
-                txData,
-                null,
-                2
-              )}`,
-            },
-            ...messages,
-            userMessage,
-          ],
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.OPEN_AI_API_KEY}`,
-          },
-        }
-      );
+      const apiKey = process.env.EXTENSION_PUBLIC_OPENAI_API_KEY;
+      console.log("Open AI keys: ", apiKey)
 
-      const assistantMessage = response.data.choices[0].message;
+      // if (!apiKey) {
+      //   alert("OpenAI API key is not set");
+      //   throw new Error("OpenAI API key is not set");
+      // }
+
+      // const response = await axios.post(
+      //   "https://api.openai.com/v1/chat/completions",
+      //   {
+      //     model: "gpt-3.5-turbo",
+      //     messages: [
+      //       {
+      //         role: "system",
+      //         content: `You are a helpful assistant with knowledge about NEAR blockchain transactions. 
+      //         Here's the context for the current transaction:
+      //         Transaction Data: ${JSON.stringify(txData)}
+
+      //         Please provide informative and concise answers about this transaction. If asked about details not present in the provided data, politely explain that you don't have that information.`,
+      //       },
+      //       ...messages,
+      //       userMessage,
+      //     ],
+      //   },
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer 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`,
+      //     },
+      //   }
+      // );
+
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: "system",
+            content: `You are a helpful assistant with knowledge about NEAR blockchain transactions. 
+            Here's the context for the current transaction:
+            Transaction Data: ${JSON.stringify(txData)}
+            
+            Please provide informative and concise answers about this transaction. If asked about details not present in the provided data, politely explain that you don't have that information.`,
+          },
+          ...messages,
+          userMessage,
+        ] as any,
+      })
+
+      const assistantMessage = completion.choices[0].message as any;
       setMessages((prevMessages) => [...prevMessages, assistantMessage]);
     } catch (error) {
+
       console.error("Error sending message to OpenAI:", error);
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -135,16 +165,14 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`mb-4 ${
-              message.role === "user" ? "text-right" : "text-left"
-            }`}
+            className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"
+              }`}
           >
             <span
-              className={`inline-block p-3 rounded-lg max-w-xs break-words ${
-                message.role === "user"
-                  ? "bg-teal-900 text-white"
-                  : "bg-gray-800 text-gray-300"
-              }`}
+              className={`inline-block p-3 rounded-lg max-w-xs break-words ${message.role === "user"
+                ? "bg-teal-900 text-white"
+                : "bg-gray-800 text-gray-300"
+                }`}
             >
               {message.content}
             </span>
