@@ -11,7 +11,7 @@ async function parseUrlToJson(
 ): Promise<{ type: string; value: any }> {
   try {
     const regex =
-      /https:\/\/beryx.io\/search\/fil\/mainnet\/(address|txs)\/([^?]+)/;
+      /https:\/\/nearblocks.io\/txns\/(address|txs)\/([^?]+)/;
     const match = url.match(regex);
 
     if (match && match.length >= 3) {
