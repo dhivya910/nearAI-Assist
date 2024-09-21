@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-<<<<<<< HEAD
 @tailwind utilities;
 
 @keyframes gradient-border {
@@ -52,6 +51,3 @@
     background-repeat: no-repeat;
   }
   
-=======
-@tailwind utilities;
->>>>>>> 0046c610594ef733dab3c85014fde3b659adee73
