@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import axios from "axios";
-import fs from "fs";
 
 const PORT = process.env.PORT || 4000;
 const HOSTNAME = process.env.HOSTNAME || "http://localhost";
