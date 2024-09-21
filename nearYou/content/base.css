@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient-border {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .animate-gradient-border {
+    background-size: 200% 200%;
+    animation: gradient-border 4s ease infinite;
+  }
+  
+  .inner-content {
+    background-color: #000; /* Inner background color */
+    border-radius: 10px;
+    padding: 16px; /* Padding inside the chat box */
+  }
+  
+  /* Add this to your CSS or style block */
+.wave {
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to right, #7b2ff7, #00c6ff); /* Adjust gradient as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .wave::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="1" d="M0,160L80,154.7C160,149,320,139,480,144C640,149,800,171,960,186.7C1120,203,1280,213,1360,218.7L1440,224V320H0V160Z"></path></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
