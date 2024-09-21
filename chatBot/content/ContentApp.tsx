@@ -5,7 +5,7 @@ import { Providers } from "./Providers";
 import Chat from "./components/Chat";
 import processAccount from "./utils/processAccount";
 import processTx from "./utils/processTx";
-import WorldCoinConnect from "./components/WorldCoinConnect";
+import WorldCoinConnect from "./components/WorldCoin";
 
 async function parseUrlToJson(
   url: string
