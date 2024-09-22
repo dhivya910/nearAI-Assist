@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import logo from "../public/logo.webp";
-import Layout from "./components/Layout";
-import { Providers } from "./Providers";
-import Chat from "./components/Chat";
-import processAccount from "./utils/processAccount";
-import processTx from "./utils/processTx";
-import WorldCoinConnect from "./components/WorldCoin";
+import Layout from "../components/Layout";
+import { Providers } from "../Providers";
+import Chat from "../components/Chat";
+import processAccount from "../utils/processAccount";
+import processTx from "../utils/processTx";
+import WorldCoinConnect from "../components/WorldCoin";
 
 async function parseUrlToJson(
   url: string
 ): Promise<{ type: string; value: any }> {
   try {
     const regex =
-      /https:\/\/nearblocks.io\/(account|txs)\/([^?]+)/;
+      /https:\/\/beryx.io\/search\/fil\/mainnet\/(address|txs)\/([^?]+)/;
     const match = url.match(regex);
 
     if (match && match.length >= 3) {
@@ -53,7 +53,7 @@ export default function ContentApp() {
   const [currentData, setCurrentData] = useState<any>({});
 
   // Function to initialize the chat
-  async function initnearYou() {
+  async function initSmith() {
     const url = window.location.href;
     const currentItem = await parseUrlToJson(url);
     setCurrentData(currentItem);
@@ -96,9 +96,9 @@ export default function ContentApp() {
                 <h2 className="text-xl font-bold tracking-tight text-white my-4">
                   Chat with NearYou, your AI assistant
                 </h2>
-                <WorldCoinConnect/>
+                <WorldCoinConnect />
                 <button
-                  onClick={initnearYou}
+                  onClick={initSmith}
                   className="ml-2 px-4 py-2 border border-white bg-teal-900 text-white rounded-lg disabled:opacity-50"
                 >
                   Call NearYou for this tx/address

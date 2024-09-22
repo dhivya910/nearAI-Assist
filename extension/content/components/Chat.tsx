@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import OpenAI from 'openai'
+import OpenAI from "openai";
 
 const openai = new OpenAI({
   apiKey: process.env.EXTENSION_PUBLIC_OPENAI_API_KEY!,
-  dangerouslyAllowBrowser: true
-})
+  dangerouslyAllowBrowser: true,
+});
 
-const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
+const ChatComponent = ({
+  data: initialTxHash,
+  data: userAccountId,
+  onBack,
+}: {
+  data: string;
+  onBack: () => void;
+}) => {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<
     Array<{ role: string; content: string }>
@@ -16,6 +23,7 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
   const [isChatVisible, setIsChatVisible] = useState(true);
   const [txData, setTxData] = useState<any>(null);
   const [txHash, setTxHash] = useState(initialTxHash);
+  const [accountId, setAccountId] = useState(userAccountId);
 
   useEffect(() => {
     const extractTxHash = () => {
@@ -27,21 +35,32 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
 
     extractTxHash();
   }, []);
+  useEffect(() => {
+    const extractAccountId = () => {
+      const url = window.location.href;
+      const parts = url.split("/");
+      const hashPart = parts[parts.length - 1];
+      setTxHash(hashPart);
+    };
+
+    extractAccountId();
+  }, []);
 
   useEffect(() => {
     async function fetchTxData() {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://api.nearblocks.io/v1/txns/${txHash}`,
-
+          `https://api.nearblocks.io/v1/txns/${txHash}`
         );
         setTxData(response?.data);
 
-        setMessages([{
-          role: "assistant",
-          content: `Hello! I have information about a transaction on the NEAR blockchain. What would you like to know about it?`,
-        }]);
+        setMessages([
+          {
+            role: "assistant",
+            content: `Hello! I have information about a transaction on the NEAR blockchain. What would you like to know about it?`,
+          },
+        ]);
       } catch (error) {
         console.error("Error fetching transaction data:", error);
         setMessages([
@@ -60,6 +79,39 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
     }
   }, [txHash]);
 
+  useEffect(() => {
+    async function fetchAccountInfo() {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `https://api.nearblocks.io/v1/account/${accountId}`
+        );
+        setTxData(response?.data);
+
+        setMessages([
+          {
+            role: "assistant",
+            content: `Hello! I have information about the account ${accountId} on the NEAR blockchain. What would you like to know?`,
+          },
+        ]);
+      } catch (error) {
+        console.error("Error fetching account details:", error);
+        setMessages([
+          {
+            role: "assistant",
+            content:
+              "Sorry, I couldn't fetch the account details. How can I assist you?",
+          },
+        ]);
+      }
+      setLoading(false);
+    }
+
+    if (accountId) {
+      fetchAccountInfo();
+    }
+  }, [accountId]);
+
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -70,7 +122,18 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
 
     try {
       const apiKey = process.env.EXTENSION_PUBLIC_OPENAI_API_KEY;
-      console.log("Open AI keys: ", apiKey)
+      console.log("Open AI keys: ", apiKey);
+
+      let context = "";
+
+      // Determine whether to include transaction or account information
+      if (txData) {
+        context += `Transaction Data: ${JSON.stringify(txData)}\n`;
+      }
+
+      if (accountId) {
+        context += `Account Data: ${JSON.stringify(accountId)}\n`;
+      }
 
       // if (!apiKey) {
       //   alert("OpenAI API key is not set");
@@ -84,7 +147,7 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
       //     messages: [
       //       {
       //         role: "system",
-      //         content: `You are a helpful assistant with knowledge about NEAR blockchain transactions. 
+      //         content: `You are a helpful assistant with knowledge about NEAR blockchain transactions.
       //         Here's the context for the current transaction:
       //         Transaction Data: ${JSON.stringify(txData)}
 
@@ -103,25 +166,24 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
       // );
 
       const completion = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
+        model: "gpt-4",
         messages: [
           {
             role: "system",
-            content: `You are a helpful assistant with knowledge about NEAR blockchain transactions. 
-            Here's the context for the current transaction:
-            Transaction Data: ${JSON.stringify(txData)}
-            
-            Please provide informative and concise answers about this transaction. If asked about details not present in the provided data, politely explain that you don't have that information.`,
+            content: `You are a helpful assistant with knowledge about NEAR blockchain transactions and accounts. 
+            Here's the context for the current query:
+            ${context}
+
+            Please provide informative and concise answers based on this data. If asked about details not present in the provided data, politely explain that you don't have that information.`,
           },
           ...messages,
           userMessage,
         ] as any,
-      })
+      });
 
       const assistantMessage = completion.choices[0].message as any;
       setMessages((prevMessages) => [...prevMessages, assistantMessage]);
     } catch (error) {
-
       console.error("Error sending message to OpenAI:", error);
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -148,12 +210,11 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
           </div>
         </div>
         <div>
-          <button
-            onClick={() => setIsChatVisible(false)}
-            className="text-white text-xl"
-          >
-            ✕
-          </button>
+          <div>
+            <button onClick={onBack} className="text-white text-xl">
+              ✕
+            </button>
+          </div>
         </div>
         <div>
           <button className="text-white text-xl">⋮</button>
@@ -165,14 +226,16 @@ const ChatComponent = ({ data: initialTxHash }: { data: string }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"
-              }`}
+            className={`mb-4 ${
+              message.role === "user" ? "text-right" : "text-left"
+            }`}
           >
             <span
-              className={`inline-block p-3 rounded-lg max-w-xs break-words ${message.role === "user"
-                ? "bg-teal-900 text-white"
-                : "bg-gray-800 text-gray-300"
-                }`}
+              className={`inline-block p-3 rounded-lg max-w-xs break-words ${
+                message.role === "user"
+                  ? "bg-teal-900 text-white"
+                  : "bg-gray-800 text-gray-300"
+              }`}
             >
               {message.content}
             </span>
